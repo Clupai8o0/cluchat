@@ -12,7 +12,7 @@ import SendMessage from "./SendMessage";
 
 const ChatBox = () => {
 	const [messages, setMessages] = useState([]);
-	const scroll = useRef();
+	const scroll = useRef(null);
 
 	useEffect(() => {
 		const q = query(
@@ -32,7 +32,10 @@ const ChatBox = () => {
 			setMessages(sortedMessages);
 		});
 
-		return () => unsubscribe;
+		// return () => unsubscribe;
+		return () => {
+			unsubscribe;
+		}
 	}, []);
 
 	return (

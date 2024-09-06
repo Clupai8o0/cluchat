@@ -11,7 +11,8 @@ const SendMessage = ({ scroll }: { scroll: any }) => {
 			alert("Enter valid message");
 			return;
 		}
-		const { uid, displayName, photoURL } = auth.currentUser;
+
+		const { uid, displayName, photoURL } = auth.currentUser || {};
 		await addDoc(collection(db, "messages"), {
 			text: message,
 			name: displayName,
@@ -22,6 +23,7 @@ const SendMessage = ({ scroll }: { scroll: any }) => {
 		setMessage("");
 		scroll.current.scrollIntoView({ behavior: "smooth" });
 	};
+
 	return (
 		<form onSubmit={(event) => sendMessage(event)} className="send-message">
 			<label htmlFor="messageInput" hidden>
