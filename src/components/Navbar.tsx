@@ -1,38 +1,30 @@
-import GoogleSignin from "../img/btn_google_signin_dark_pressed_web.png";
 import { auth } from "@/lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { Button } from "./ui/button";
+import { ModeToggle } from "./ModeToggle";
 
 const NavBar = () => {
 	const [user] = useAuthState(auth);
-
-	const googleSignIn = () => {
-		const provider = new GoogleAuthProvider();
-		signInWithPopup(auth, provider);
-	};
 
 	const signOut = () => {
 		auth.signOut();
 	};
 
 	return (
-		<nav className="nav-bar">
-			<h1>React Chat</h1>
-			{user ? (
-				<button onClick={signOut} className="sign-out" type="button">
-					Sign Out
-				</button>
-			) : (
-				<button className="sign-in">
-					<img
-						onClick={googleSignIn}
-						src={GoogleSignin}
-						alt="sign in with google"
-						// type="button"
-					/>
-				</button>
-			)}
-		</nav>
+		<header className="w-full flex justify-center px-6 md:px-12 py-4">
+			<nav className="max-w-7xl w-full flex items-center justify-between">
+				<div></div>
+
+				<div className="flex items-center gap-2">
+					<ModeToggle />
+					{user && (
+						<Button onClick={signOut} variant="destructive">
+							Sign Out
+						</Button>
+					)}
+				</div>
+			</nav>
+		</header>
 	);
 };
 

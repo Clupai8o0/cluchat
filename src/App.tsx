@@ -1,27 +1,23 @@
 import { auth } from "./lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import "./App.css";
-
 import NavBar from "./components/Navbar";
 import ChatBox from "./components/Chatbox";
-import Welcome from "./components/Welcome";
+import Login from "./components/Login";
+
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 function App() {
-  const [user] = useAuthState(auth);
+	const [user] = useAuthState(auth);
 
-  return (
-    <div className="App">
-      <NavBar />
-      {!user ? (
-        <Welcome />
-      ) : (
-        <>
-          <ChatBox />
-        </>
-      )}
-    </div>
-  );
+	return (
+		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			<div className="App">
+				<NavBar />
+				{!user ? <Login /> : <ChatBox />}
+			</div>
+		</ThemeProvider>
+	);
 }
 
 export default App;
