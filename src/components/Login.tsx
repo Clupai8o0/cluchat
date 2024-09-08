@@ -37,9 +37,9 @@ const Login = () => {
 	}, [email, password]);
 
 	return (
-		<main className="w-full flex justify-center h-[70vh] items-center px-4 md:px-12">
+		<main className="w-full flex justify-center h-[80vh] items-center px-6 md:px-12">
 			<form
-				className="max-w-xl w-full"
+				className="max-w-md w-full"
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleLogin();
@@ -75,12 +75,18 @@ const Login = () => {
 							required
 						/>
 						<label
-							className={clsx("text-xs text-red-500", !passwordError && "hidden")}
+							className={clsx(
+								"text-xs text-red-500",
+								!passwordError && "hidden"
+							)}
 						>
 							{passwordError}
 						</label>
 					</div>
-					<Button type="submit">Login</Button>
+
+					<Button type="submit" className="mt-2">
+						Login
+					</Button>
 				</div>
 			</form>
 		</main>

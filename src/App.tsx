@@ -12,7 +12,7 @@ function App() {
 
 	return (
 		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			<div className="App">
+			<div className="relative">
 				<NavBar />
 				{!user ? <Login /> : <ChatBox />}
 			</div>

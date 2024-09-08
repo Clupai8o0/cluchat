@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import {
 	query,
 	collection,
@@ -7,6 +8,7 @@ import {
 	limit,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+
 import Message from "./Message";
 import SendMessage from "./SendMessage";
 
@@ -26,10 +28,10 @@ const ChatBox = () => {
 			QuerySnapshot.forEach((doc) => {
 				fetchedMessages.push({ ...doc.data(), id: doc.id });
 			});
-			const sortedMessages = fetchedMessages.sort(
-				(a: any, b: any) => a.createdAt - b.createdAt
-			);
-			setMessages(sortedMessages);
+			// const sortedMessages = fetchedMessages.sort(
+			// 	(a: any, b: any) => a.createdAt - b.createdAt
+			// );
+			setMessages(fetchedMessages);
 		});
 
 		// return () => unsubscribe;
@@ -39,8 +41,8 @@ const ChatBox = () => {
 	}, []);
 
 	return (
-		<main className="chat-box">
-			<div className="messages-wrapper">
+		<main className="mb-28 mt-24 flex justify-center px-6 md:px-12 ">
+			<div className="flex flex-col-reverse gap-2 w-full max-w-7xl">
 				{messages?.map((message: any) => (
 					<Message key={message.id} message={message} />
 				))}
