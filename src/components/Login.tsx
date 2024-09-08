@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -14,10 +15,13 @@ const Login = () => {
 	const [emailError, setEmailError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 
+	const [logging, setLogging] = useState(false);
+
 	const handleLogin = () => {
+		setLogging(true);
 		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				console.log(userCredential);
+			.then(() => {
+				setLogging(false)
 			})
 			.catch((e) => {
 				const errorCode = e.code;
@@ -27,6 +31,7 @@ const Login = () => {
 				) {
 					setEmailError("Wrong email or password");
 					setPasswordError("Wrong email or password");
+					setLogging(false);
 				}
 			});
 	};
@@ -84,7 +89,10 @@ const Login = () => {
 						</label>
 					</div>
 
-					<Button type="submit" className="mt-2">
+					<Button type="submit" className="mt-2" disabled={logging}>
+						{logging && (
+							<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+						)}
 						Login
 					</Button>
 				</div>

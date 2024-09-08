@@ -35,13 +35,13 @@ const SendMessage = ({ scroll }: { scroll: any }) => {
 	return (
 		<form
 			onSubmit={(event) => sendMessage(event)}
-			className="fixed bottom-0 left-0 px-6 md:px-12 py-6 bg-zinc-900 flex justify-center w-full"
+			className="fixed bottom-0 left-0 px-6 md:px-12 py-6 bg-background flex justify-center w-full border-t border-foreground"
 		>
 			<div className="flex gap-2 w-full max-w-7xl">
 				<Input
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
-					className="bg-zinc-800"
+					className="bg-accent"
 					placeholder="Send message..."
 				/>
 				<Button type="submit" variant="default" disabled={sendingMessage}>

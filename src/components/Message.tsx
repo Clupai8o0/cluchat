@@ -8,9 +8,9 @@ const Message = ({ message }: { message: any }) => {
 	return (
 		<div
 			className={clsx(
-				"bg-zinc-800 rounded-t-lg py-2 px-4 w-fit",
+				"bg-accent rounded-t-lg py-2 px-4 w-fit",
 				message.uid === user?.uid
-					? "!bg-zinc-600 rounded-l-lg ml-auto"
+					? "!bg-foreground rounded-l-lg ml-auto text-background"
 					: "rounded-r-lg"
 			)}
 		>

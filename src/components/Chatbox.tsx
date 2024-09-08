@@ -37,8 +37,13 @@ const ChatBox = () => {
 		// return () => unsubscribe;
 		return () => {
 			unsubscribe;
-		}
+		};
 	}, []);
+
+	useEffect(() => {
+		//@ts-ignore
+		if (scroll.current) scroll.current.scrollIntoView({ behavior: "smooth" });
+	}, [messages, scroll]);
 
 	return (
 		<main className="mb-28 mt-24 flex justify-center px-6 md:px-12 ">
